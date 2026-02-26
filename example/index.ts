@@ -24,9 +24,35 @@ document.querySelector('#app')!.innerHTML = `
     <div class="pointer-events-none absolute inset-0 bg-hero-glow opacity-90"></div>
     <div class="relative mx-auto flex min-h-screen max-w-6xl flex-col gap-10 px-6 py-12">
       <header class="flex flex-col gap-6">
-        <div class="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-          <span class="inline-flex h-2 w-2 rounded-full bg-violet-400 shadow-glow"></span>
-          Basque voice demo
+        <div class="flex flex-wrap items-center gap-4">
+          <div class="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+            <span class="inline-flex h-2 w-2 rounded-full bg-violet-400 shadow-glow"></span>
+            Basque voice demo
+          </div>
+          <div class="flex items-center gap-3">
+            <img
+              class="h-10 w-10 rounded-full border border-white/20"
+              src="https://avatars.githubusercontent.com/u/185958299?s=400&u=ed950f6733b82e4ab46c02cc7b454bfcb3b43bc2&v=4"
+              alt="Itzune logo"
+              loading="lazy"
+            />
+            <a
+              class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-white/70 transition hover:text-violet-200"
+              href="https://github.com/itzune"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+            <a
+              class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-white/70 transition hover:text-violet-200"
+              href="https://huggingface.co/itzune"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Hugging Face
+            </a>
+          </div>
         </div>
         <div class="flex flex-col gap-4">
           <h1 class="font-display text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">Basque Piper TTS</h1>
