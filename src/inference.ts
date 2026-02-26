@@ -1,5 +1,5 @@
 import { InferenceConfig, ProgressCallback, VoiceId } from "./types";
-import { HF_BASE, ONNX_BASE, PATH_MAP, WASM_BASE } from './fixtures';
+import { HF_BASE, ONNX_BASE, PATH_MAP, WASM_BASE, resolveVoiceUrls } from './fixtures';
 import { readBlob, writeBlob } from './opfs';
 import { fetchBlob } from './http.js';
 import { pcm2wav } from './audio';
@@ -90,12 +90,12 @@ export class TtsSession {
     this.#ort.env.wasm.wasmPaths = this.#wasmPaths.onnxWasm;
     // `${import.meta.env.DEV ? '../assets' : '.'}/` || ONNX_WASM
 
-    const path = PATH_MAP[this.voiceId];
-    const modelConfigBlob = await getBlob(`${HF_BASE}/${path}.json`);
+    const { modelUrl, configUrl } = resolveVoiceUrls(this.voiceId);
+    const modelConfigBlob = await getBlob(configUrl);
     this.#modelConfig = JSON.parse(await modelConfigBlob.text());
 
     const modelBlob = await getBlob(
-      `${HF_BASE}/${path}`,
+      modelUrl,
       this.#progressCallback
     );
     this.#ortSession = await this.#ort.InferenceSession.create(

@@ -17,7 +17,7 @@ document.querySelector('#app')!.innerHTML = `
 `
 
 window.onload = () => {
-  let selected = 'en_US-hfc_female-medium';
+  let selected = 'eu-maider-medium';
   const pickerEL = document.getElementById('voices');
   worker.postMessage({ type: 'voices' });
   worker.addEventListener('message', (event: MessageEvent<{ type: 'voices', voices: { key: string }[] }>) => {

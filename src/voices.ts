@@ -1,4 +1,4 @@
-import { HF_BASE } from "./fixtures";
+import { CUSTOM_VOICES, HF_BASE } from "./fixtures";
 import { Voice } from "./types";
 
 /**
@@ -9,10 +9,17 @@ export async function voices(): Promise<Voice[]> {
   try {
     const res = await fetch(`${HF_BASE}/voices.json`);
     if (!res.ok) throw new Error('Could not retrieve voices file from huggingface');
-    return Object.values(await res.json());
+    const remoteVoices = await res.json();
+    return Object.values({
+      ...remoteVoices,
+      ...CUSTOM_VOICES,
+    });
   } catch {
     const LOCAL_VOICES_JSON = await import('./voices_static.json');
     console.log(`Could not fetch voices.json remote ${HF_BASE}. Fetching local`);
-    return Object.values(LOCAL_VOICES_JSON.default);
+    return Object.values({
+      ...LOCAL_VOICES_JSON.default,
+      ...CUSTOM_VOICES,
+    });
   }
 }

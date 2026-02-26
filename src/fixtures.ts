@@ -4,6 +4,7 @@ import { VoiceId } from "./types";
  * Location of the ml models
  */
 export const HF_BASE = 'https://huggingface.co/diffusionstudio/piper-voices/resolve/main';
+export const CUSTOM_VOICE_BASE = 'https://huggingface.co/itzune/maider-tts/resolve/main';
 
 /**
  * Inference runtime libary base path
@@ -143,5 +144,51 @@ export const PATH_MAP: Record<VoiceId, string> = {
   'en_US-bryce-medium': 'en/en_US/bryce/medium/en_US-bryce-medium.onnx',
   'en_US-john-medium': 'en/en_US/john/medium/en_US-john-medium.onnx',
   'en_US-norman-medium': 'en/en_US/norman/medium/en_US-norman-medium.onnx',
-  'it_IT-paola-medium': 'it/it_IT/paola/medium/it_IT-paola-medium.onnx'
+  'it_IT-paola-medium': 'it/it_IT/paola/medium/it_IT-paola-medium.onnx',
+  'eu-maider-medium': `${CUSTOM_VOICE_BASE}/eu-maider-medium.onnx`
 }
+
+export function resolveVoiceUrls(voiceId: VoiceId) {
+  const path = PATH_MAP[voiceId];
+  if (!path) {
+    throw new Error(`Unknown voiceId: ${voiceId}`);
+  }
+  const modelUrl = path?.startsWith('http') ? path : `${HF_BASE}/${path}`;
+  return {
+    modelUrl,
+    configUrl: `${modelUrl}.json`
+  };
+}
+
+export const CUSTOM_VOICES = {
+  'eu-maider-medium': {
+    key: 'eu-maider-medium',
+    name: 'maider',
+    language: {
+      code: 'eu',
+      family: 'eu',
+      region: 'ES',
+      name_native: 'Euskara',
+      name_english: 'Basque',
+      country_english: 'Spain'
+    },
+    quality: 'medium',
+    num_speakers: 1,
+    speaker_id_map: {},
+    files: {
+      [`${CUSTOM_VOICE_BASE}/eu-maider-medium.onnx`]: {
+        size_bytes: 0,
+        md5_digest: 'unknown'
+      },
+      [`${CUSTOM_VOICE_BASE}/eu-maider-medium.onnx.json`]: {
+        size_bytes: 0,
+        md5_digest: 'unknown'
+      },
+      [`${CUSTOM_VOICE_BASE}/MODEL_CARD`]: {
+        size_bytes: 0,
+        md5_digest: 'unknown'
+      }
+    },
+    aliases: ['eu-maider', 'maider']
+  }
+} as const;

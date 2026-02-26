@@ -1,5 +1,5 @@
 
-import { PATH_MAP, HF_BASE } from "./fixtures";
+import { PATH_MAP, resolveVoiceUrls } from "./fixtures";
 import { fetchBlob } from "./http";
 import { removeBlob, writeBlob } from "./opfs";
 import { ProgressCallback, VoiceId } from "./types";
@@ -8,8 +8,7 @@ import { ProgressCallback, VoiceId } from "./types";
  * Prefetch a model for later use
  */
 export async function download(voiceId: VoiceId, callback?: ProgressCallback): Promise<void> {
-  const path = PATH_MAP[voiceId];
-  const urls = [`${HF_BASE}/${path}`, `${HF_BASE}/${path}.json`]
+  const urls = PATH_MAP[voiceId] ? Object.values(resolveVoiceUrls(voiceId)) : [];
 
   await Promise.all(urls.map(async (url) => {
     writeBlob(url, await fetchBlob(url, url.endsWith('.onnx') ? callback : undefined));
@@ -20,8 +19,7 @@ export async function download(voiceId: VoiceId, callback?: ProgressCallback): P
  * Remove a model from opfs
  */
 export async function remove(voiceId: VoiceId) {
-  const path = PATH_MAP[voiceId];
-  const urls = [`${HF_BASE}/${path}`, `${HF_BASE}/${path}.json`]
+  const urls = PATH_MAP[voiceId] ? Object.values(resolveVoiceUrls(voiceId)) : [];
 
   await Promise.all(urls.map(url => removeBlob(url)));
 }
