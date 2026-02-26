@@ -1,5 +1,5 @@
 import { InferenceConfig, ProgressCallback, VoiceId } from "./types";
-import { HF_BASE, ONNX_BASE, PATH_MAP, WASM_BASE, resolveVoiceUrls } from './fixtures';
+import { ONNX_BASE, WASM_BASE, resolveVoiceUrls } from './fixtures';
 import { readBlob, writeBlob } from './opfs';
 import { fetchBlob } from './http.js';
 import { pcm2wav } from './audio';
