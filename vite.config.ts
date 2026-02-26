@@ -27,6 +27,9 @@ export default defineConfig({
         },
       },
   plugins: [dts({ exclude: "**/*.spec.ts" })],
+  worker: {
+    format: 'es'
+  },
   server: {
     headers: {
       'Cross-Origin-Embedder-Policy': 'require-corp',
