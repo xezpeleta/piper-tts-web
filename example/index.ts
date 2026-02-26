@@ -1,6 +1,6 @@
 import './styles.css';
 import * as tts from '../src';
-import { Download, Sparkles, Volume2, Loader2, RefreshCcw } from 'lucide';
+import { createElement, icons } from 'lucide';
 // @ts-ignore-next-line
 import Worker from './worker.ts?worker';
 
@@ -123,11 +123,18 @@ function mountIcon(container: HTMLElement | null, node: Element) {
   container.appendChild(node);
 }
 
-mountIcon(generateIconEl, Sparkles({ size: 18 }));
-mountIcon(resetIconEl, RefreshCcw({ size: 16 }));
-mountIcon(flushIconEl, RefreshCcw({ size: 16 }));
-mountIcon(audioIconEl, Volume2({ size: 16 }));
-mountIcon(downloadIconEl, Download({ size: 16 }));
+function renderIcon(
+  name: keyof typeof icons,
+  attrs: { size?: number; class?: string } = {}
+) {
+  return createElement(icons[name], attrs);
+}
+
+mountIcon(generateIconEl, renderIcon('sparkles', { size: 18 }));
+mountIcon(resetIconEl, renderIcon('refreshCcw', { size: 16 }));
+mountIcon(flushIconEl, renderIcon('refreshCcw', { size: 16 }));
+mountIcon(audioIconEl, renderIcon('volume2', { size: 16 }));
+mountIcon(downloadIconEl, renderIcon('download', { size: 16 }));
 
 let audioUrl: string | null = null;
 let isGenerating = false;
@@ -166,15 +173,15 @@ function setGenerateState(state: 'idle' | 'downloading' | 'generating') {
 
   if (state === 'downloading') {
     generateLabel.textContent = 'Downloading model...';
-    mountIcon(generateIconEl, Loader2({ size: 18, class: 'animate-spin' }));
+    mountIcon(generateIconEl, renderIcon('loader2', { size: 18, class: 'animate-spin' }));
     setStatus('Downloading', 'Fetching model assets');
   } else if (state === 'generating') {
     generateLabel.textContent = 'Generating...';
-    mountIcon(generateIconEl, Loader2({ size: 18, class: 'animate-spin' }));
+    mountIcon(generateIconEl, renderIcon('loader2', { size: 18, class: 'animate-spin' }));
     setStatus('Generating', 'Synthesizing audio');
   } else {
     generateLabel.textContent = 'Generate';
-    mountIcon(generateIconEl, Sparkles({ size: 18 }));
+    mountIcon(generateIconEl, renderIcon('sparkles', { size: 18 }));
     setStatus('Idle', 'Model ready');
   }
 }
