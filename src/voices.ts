@@ -13,13 +13,13 @@ export async function voices(): Promise<Voice[]> {
     return Object.values({
       ...remoteVoices,
       ...CUSTOM_VOICES,
-    });
+    }) as Voice[];
   } catch {
     const LOCAL_VOICES_JSON = await import('./voices_static.json');
     console.log(`Could not fetch voices.json remote ${HF_BASE}. Fetching local`);
     return Object.values({
       ...LOCAL_VOICES_JSON.default,
       ...CUSTOM_VOICES,
-    });
+    }) as Voice[];
   }
 }

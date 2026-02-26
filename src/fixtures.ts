@@ -191,4 +191,4 @@ export const CUSTOM_VOICES = {
     },
     aliases: ['eu-maider', 'maider']
   }
-} as const;
+};

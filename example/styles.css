@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Manrope", system-ui, sans-serif;
+    background-color: #0a0615;
+  }
+
+  body {
+    min-height: 100vh;
+  }
+
+  * {
+    scrollbar-color: rgba(124, 58, 237, 0.6) rgba(16, 8, 34, 0.7);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply border border-white/10 bg-white/5 backdrop-blur-xl shadow-card;
+  }
+
+  .control-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900;
+  }
+
+  .button-primary {
+    @apply control-ring inline-flex items-center justify-center gap-2 rounded-full bg-violet-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-violet-400 disabled:cursor-not-allowed disabled:bg-violet-500/50;
+  }
+
+  .button-secondary {
+    @apply control-ring inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/80 transition hover:border-violet-300 hover:text-white disabled:cursor-not-allowed disabled:text-white/40;
+  }
+}
