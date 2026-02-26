@@ -1,6 +1,13 @@
 import './styles.css';
 import * as tts from '../src';
-import { createElement, icons } from 'lucide';
+import {
+  createElement,
+  Download,
+  Sparkles,
+  Volume2,
+  Loader2,
+  RefreshCcw,
+} from 'lucide';
 // @ts-ignore-next-line
 import Worker from './worker.ts?worker';
 
@@ -124,17 +131,17 @@ function mountIcon(container: HTMLElement | null, node: Element) {
 }
 
 function renderIcon(
-  name: keyof typeof icons,
+  icon: Parameters<typeof createElement>[0],
   attrs: { size?: number; class?: string } = {}
 ) {
-  return createElement(icons[name], attrs);
+  return createElement(icon, attrs);
 }
 
-mountIcon(generateIconEl, renderIcon('sparkles', { size: 18 }));
-mountIcon(resetIconEl, renderIcon('refreshCcw', { size: 16 }));
-mountIcon(flushIconEl, renderIcon('refreshCcw', { size: 16 }));
-mountIcon(audioIconEl, renderIcon('volume2', { size: 16 }));
-mountIcon(downloadIconEl, renderIcon('download', { size: 16 }));
+mountIcon(generateIconEl, renderIcon(Sparkles, { size: 18 }));
+mountIcon(resetIconEl, renderIcon(RefreshCcw, { size: 16 }));
+mountIcon(flushIconEl, renderIcon(RefreshCcw, { size: 16 }));
+mountIcon(audioIconEl, renderIcon(Volume2, { size: 16 }));
+mountIcon(downloadIconEl, renderIcon(Download, { size: 16 }));
 
 let audioUrl: string | null = null;
 let isGenerating = false;
@@ -173,15 +180,15 @@ function setGenerateState(state: 'idle' | 'downloading' | 'generating') {
 
   if (state === 'downloading') {
     generateLabel.textContent = 'Downloading model...';
-    mountIcon(generateIconEl, renderIcon('loader2', { size: 18, class: 'animate-spin' }));
+    mountIcon(generateIconEl, renderIcon(Loader2, { size: 18, class: 'animate-spin' }));
     setStatus('Downloading', 'Fetching model assets');
   } else if (state === 'generating') {
     generateLabel.textContent = 'Generating...';
-    mountIcon(generateIconEl, renderIcon('loader2', { size: 18, class: 'animate-spin' }));
+    mountIcon(generateIconEl, renderIcon(Loader2, { size: 18, class: 'animate-spin' }));
     setStatus('Generating', 'Synthesizing audio');
   } else {
     generateLabel.textContent = 'Generate';
-    mountIcon(generateIconEl, renderIcon('sparkles', { size: 18 }));
+    mountIcon(generateIconEl, renderIcon(Sparkles, { size: 18 }));
     setStatus('Idle', 'Model ready');
   }
 }
