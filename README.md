@@ -25,9 +25,9 @@ Piper is a lightweight TTS engine designed to run with low resources. That makes
 
 ## Features
 
-- Basque-first demo experience with editable text and audio playback
-- Model download progress and generation indicators
-- Audio export after synthesis
+- Basque-first demo experience with editable text and audio playback.
+- Model download progress and generation indicators.
+- Audio export after synthesis.
 
 ## Demo
 
