@@ -43,6 +43,7 @@
   "scripts": {
     "dev": "vite",
     "build": "rm -r -f ./dist && tsc && vite build",
+    "build:demo": "rm -r -f ./dist-demo && vite build",
     "preview": "vite preview",
     "test": "npx playwright test --project=chromium",
     "verify": "yarn build && cd scripts && node refresh-and-validate.mjs && cd .."
