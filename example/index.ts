@@ -64,8 +64,8 @@ document.querySelector('#app')!.innerHTML = `
         </div>
         <div class="flex flex-wrap items-center gap-4 text-sm text-white/60">
           <span>References:</span>
-          <a class="text-white/80 underline-offset-4 transition hover:text-violet-200 hover:underline" href="https://github.com/rhasspy/piper" target="_blank" rel="noreferrer">Piper project</a>
-          <a class="text-white/80 underline-offset-4 transition hover:text-violet-200 hover:underline" href="https://huggingface.co/itzune/maider-tts" target="_blank" rel="noreferrer">Maider Piper voice</a>
+          <a class="text-white/80 underline-offset-4 transition hover:text-violet-200 hover:underline" href="https://github.com/OHF-Voice/piper1-gpl" target="_blank" rel="noreferrer">Piper project</a>
+          <a class="text-white/80 underline-offset-4 transition hover:text-violet-200 hover:underline" href="https://huggingface.co/collections/itzune/tts" target="_blank" rel="noreferrer">Itzune TTS</a>
           <a class="text-white/80 underline-offset-4 transition hover:text-violet-200 hover:underline" href="https://huggingface.co/HiTZ/TTS-eu_maider" target="_blank" rel="noreferrer">HiTZ Aholab TTS</a>
         </div>
       </header>
