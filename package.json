@@ -50,6 +50,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.35.1",
+    "onnxruntime-web": "^1.18.0",
     "object-deep-compare": "^1.2.0",
     "typescript": "^5.2.2",
     "vite": "^5.3.1",
