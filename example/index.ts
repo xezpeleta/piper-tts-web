@@ -29,13 +29,19 @@ document.querySelector('#app')!.innerHTML = `
           Basque voice demo
         </div>
         <div class="flex flex-col gap-4">
-          <h1 class="font-display text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">Maider TTS Studio</h1>
+          <h1 class="font-display text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">Basque Piper TTS</h1>
           <p class="max-w-2xl text-base text-white/70 sm:text-lg">Generate natural Basque speech with the Maider Piper model. Customize the text, track model download progress, and export the audio.</p>
         </div>
         <div class="flex flex-wrap items-center gap-3">
           <span class="rounded-full border border-violet-400/40 bg-violet-500/15 px-4 py-1 text-sm text-violet-200">Voice: Maider (female)</span>
           <span class="rounded-full border border-white/10 bg-white/5 px-4 py-1 text-sm text-white/70">Quality: Medium</span>
           <span class="rounded-full border border-white/10 bg-white/5 px-4 py-1 text-sm text-white/70">Language: Euskara</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-4 text-sm text-white/60">
+          <span>References:</span>
+          <a class="text-white/80 underline-offset-4 transition hover:text-violet-200 hover:underline" href="https://github.com/rhasspy/piper" target="_blank" rel="noreferrer">Piper project</a>
+          <a class="text-white/80 underline-offset-4 transition hover:text-violet-200 hover:underline" href="https://huggingface.co/itzune/maider-tts" target="_blank" rel="noreferrer">Maider Piper voice</a>
+          <a class="text-white/80 underline-offset-4 transition hover:text-violet-200 hover:underline" href="https://huggingface.co/HiTZ/TTS-eu_maider" target="_blank" rel="noreferrer">HiTZ Aholab TTS</a>
         </div>
       </header>
 
