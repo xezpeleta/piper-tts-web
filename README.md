@@ -1,81 +1,41 @@
-> This is a fork of [@diffusion-studio/vits-web](https://github.com/diffusion-studio/vits-web) for use
-> of PiperTTS modules inside of a browser/Electron for AnythingLLM.
-> A big shout-out goes to [Rhasspy Piper](https://github.com/rhasspy/piper), who open-sourced all the currently available models > (MIT License) and to [@jozefchutka](https://github.com/jozefchutka) who came up with the wasm build steps.
+# Basque Piper TTS
 
-# Run PiperTTS based text-to-speech in the browser powered by the [ONNX Runtime](https://onnxruntime.ai/)
+<p align="center">
+  <img src="https://avatars.githubusercontent.com/u/185958299?s=400&u=ed950f6733b82e4ab46c02cc7b454bfcb3b43bc2&v=4" alt="Itzune" width="120" />
+</p>
 
-## Difference from the original
+<p align="center">
+  <a href="https://github.com/itzune">Itzune on GitHub</a> ·
+  <a href="https://huggingface.co/itzune">Itzune on Hugging Face</a> ·
+  <a href="https://xezpeleta.github.io/piper-tts-web/">Live demo</a>
+</p>
 
-### Caching for client
+This project aims to provide a demo for the [Basque Piper TTS project](https://huggingface.co/collections/itzune/tts), which currently includes two voice models hosted on Hugging Face. Both are based on voices from the [HiTZ (Aholab) TTS work](https://huggingface.co/collections/HiTZ/tts).
 
-You can leverage `TTSSessions` for a faster inference. (see index.js for implementation)
-Credit to [this PR](https://github.com/diffusion-studio/vits-web/pull/5) for the starting point.
+Piper is a lightweight TTS engine designed to run with low resources. That makes it possible to generate audio directly in the browser, preserving data privacy because text never leaves the device.
 
-### Local WASM/Loading
+## Voices
 
-You can define local WASM paths for the `ort` wasm as well as the phenomizer wasm and data file for faster local loading
-since the client could be offline.
+- **Maider (female)**
+  - Voice model: https://huggingface.co/itzune/maider-tts
+  - Dataset: https://huggingface.co/datasets/itzune/maider-dataset
+- **Antton (male, work in progress)**
+  - Voice model: https://huggingface.co/itzune/antton-tts
+  - Dataset: https://huggingface.co/datasets/itzune/antton-dataset
 
-### Note:
+## Features
 
-This is a frontend library and will not work with NodeJS.
+- Basque-first demo experience with editable text and audio playback
+- Model download progress and generation indicators
+- Audio export after synthesis
 
-## Usage
-First of all, you need to install the library:
-```bash
-yarn add @mintplex-labs/piper-tts-web
-```
+## Demo
 
-Then you're able to import the library like this (ES only)
-```typescript
-import * as tts from '@mintplex-labs/piper-tts-web';
-```
+Live demo: https://xezpeleta.github.io/piper-tts-web/
 
-Now you can start synthesizing speech!
-```typescript
-const wav = await tts.predict({
-  text: "Text to speech in the browser is amazing!",
-  voiceId: 'en_US-hfc_female-medium',
-});
+## References
 
-const audio = new Audio();
-audio.src = URL.createObjectURL(wav);
-audio.play();
+- Piper project: https://github.com/rhasspy/piper
+- HiTZ Aholab TTS source model: https://huggingface.co/HiTZ/TTS-eu_maider
+- Base web project: https://github.com/Mintplex-Labs/piper-tts-web
 
-// as seen in /example with Web Worker
-```
-
-
-With the initial run of the predict function you will download the model which will then be stored in your [Origin private file system](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system). You can also do this manually in advance *(recommended)*, as follows:
-```typescript
-await tts.download('en_US-hfc_female-medium', (progress) => {
-  console.log(`Downloading ${progress.url} - ${Math.round(progress.loaded * 100 / progress.total)}%`);
-});
-```
-
-The predict function also accepts a download progress callback as the second argument (`tts.predict(..., console.log)`). <br>
-
-If you want to know which models have already been stored, do the following
-```typescript
-console.log(await tts.stored());
-
-// will log ['en_US-hfc_female-medium']
-```
-
-You can remove models from opfs by calling
-```typescript
-await tts.remove('en_US-hfc_female-medium');
-
-// alternatively delete all
-
-await tts.flush();
-```
-
-And last but not least use this snippet if you would like to retrieve all available voices:
-```typescript
-console.log(await tts.voices());
-
-// Hint: the key can be used as voiceId
-```
-
-### **That's it!** Happy coding :)
