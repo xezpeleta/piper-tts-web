@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/itzune">Itzune on GitHub</a> ·
   <a href="https://huggingface.co/itzune">Itzune on Hugging Face</a> ·
-  <a href="https://xezpeleta.github.io/piper-tts-web/">Live demo</a>
+  <a href="https://itzune.github.io/basque-piper-tts/">Live demo</a>
 </p>
 
 This project aims to provide a demo for the [Basque Piper TTS project](https://huggingface.co/collections/itzune/tts), which currently includes two voice models hosted on Hugging Face. Both are based on voices from the [HiTZ (Aholab) TTS work](https://huggingface.co/collections/HiTZ/tts).
@@ -31,11 +31,10 @@ Piper is a lightweight TTS engine designed to run with low resources. That makes
 
 ## Demo
 
-Live demo: https://xezpeleta.github.io/piper-tts-web/
+Live demo: https://itzune.github.io/basque-piper-tts/
 
 ## References
 
 - Piper project: https://github.com/rhasspy/piper
 - HiTZ Aholab TTS source model: https://huggingface.co/HiTZ/TTS-eu_maider
 - Base web project: https://github.com/Mintplex-Labs/piper-tts-web
-

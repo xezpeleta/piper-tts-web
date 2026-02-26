@@ -22,9 +22,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Mintplex-Labs/piper-tts-web.git"
+    "url": "git@github.com:itzune/basque-piper-tts.git"
   },
-  "homepage": "https://github.com/Mintplex-Labs/piper-tts-web#readme",
+  "homepage": "https://github.com/itzune/basque-piper-tts#readme",
   "license": "MIT",
   "keywords": [
     "vits",
