@@ -7,8 +7,9 @@ let worker = new Worker(); // set worker so we can reuse it.
 Object.assign(window, { tts });
 
 document.querySelector('#app')!.innerHTML = `
-<button id="btn" type="button">Predict</button>
-<select id="voices"></select>
+<label for="prompt">Testua (Basque)</label>
+<textarea id="prompt" rows="6">Kaixo! Hau Maider ahotsarekin sortutako proba mezua da. Idatzi nahi duzun testua eta entzuteko sakatu.</textarea>
+<button id="btn" type="button">Synthesize</button>
 
 <p>Stored Voices</p>
 <ul id="stored">
@@ -17,20 +18,6 @@ document.querySelector('#app')!.innerHTML = `
 `
 
 window.onload = () => {
-  let selected = 'eu-maider-medium';
-  const pickerEL = document.getElementById('voices');
-  worker.postMessage({ type: 'voices' });
-  worker.addEventListener('message', (event: MessageEvent<{ type: 'voices', voices: { key: string }[] }>) => {
-    if (event.data.type != 'voices') return;
-    for (let voice of event.data.voices) {
-      let optionEl = document.createElement('option');
-      if (selected === voice.key) optionEl.selected = true;
-      optionEl.value = voice.key
-      optionEl.label = voice.key
-      pickerEL?.appendChild(optionEl)
-    }
-  });
-
   const listEl = document.getElementById('stored');
   worker.postMessage({ type: 'stored' });
   worker.addEventListener('message', (event: MessageEvent<{ type: 'stored', voiceIds: string[] }>) => {
@@ -52,11 +39,11 @@ document.getElementById('flush')?.addEventListener('click', async () => {
 
 document.getElementById('btn')?.addEventListener('click', async () => {
   const mainWorker = worker ?? new Worker();
+  const prompt = (document.getElementById('prompt') as HTMLTextAreaElement | null)?.value;
   mainWorker.postMessage({
     type: 'init',
-    text: "As the waves crashed against the shore, they carried tales of distant lands and adventures untold.",
-    // @ts-ignore-next-line
-    voiceId: document.getElementById('voices')?.value ?? 'en_US-hfc_female-medium',
+    text: prompt?.trim() || 'Kaixo! Hau Maider ahotsarekin sortutako proba mezua da.',
+    voiceId: 'eu-maider-medium',
   });
 });
 
