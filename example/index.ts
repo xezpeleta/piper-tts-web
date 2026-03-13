@@ -587,6 +587,10 @@ function setAudio(blob: Blob) {
   audioUrl = URL.createObjectURL(blob);
   playerEl.src = audioUrl;
   playerEl.load();
+  const playPromise = playerEl.play();
+  if (playPromise && typeof playPromise.catch === 'function') {
+    playPromise.catch(() => undefined);
+  }
   downloadButton?.removeAttribute('disabled');
   setRenderState('ready');
 }
