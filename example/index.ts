@@ -98,7 +98,7 @@ const translations = {
     headerTag: 'Euskarazko ahots demoa',
     title: 'Piper TTS Euskaraz',
     subtitle:
-      'Euskarazko ahots naturalak sortu Basque Piper TTS modeloekin. Pertsonalizatu testua, aukeratu ahotsa eta entzun edo esportatu audioa.',
+      'Euskarazko ahots naturalak sortu Basque Piper TTS ereduarekin. Moldatu testua, aukeratu ahotsa eta entzun edo esportatu audioa.',
     voiceLabel: 'Ahotsa',
     languageBadge: 'Hizkuntza: Euskara',
     references: 'Erreferentziak:',
